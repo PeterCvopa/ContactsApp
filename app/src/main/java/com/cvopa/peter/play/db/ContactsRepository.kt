@@ -2,43 +2,56 @@ package com.cvopa.peter.play.db
 
 import com.cvopa.peter.play.model.Contact
 import com.cvopa.peter.play.model.Favorite
+import com.cvopa.peter.play.util.toContact
+import com.cvopa.peter.play.util.toEntity
+import com.cvopa.peter.play.util.toFavorite
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
-
-@Singleton
-class ContactsRepositoryImpl @Inject constructor(val db: ContactsDatabase) : ContactsRepository {
-    val dao = db.contactsDao()
-    override fun getContact(id: String?): Contact {
-        TODO("Not yet implemented")
-    }
-
-    override fun getAllFavorites(): Flow<List<Favorite>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getAllContacts(): Flow<List<Favorite>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun setContact(contact: Contact) {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteContact(id: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun toggleFavoriteStatus(id: String) {
-        TODO("Not yet implemented")
-    }
-}
+import kotlinx.coroutines.flow.map
 
 interface ContactsRepository {
-    fun getContact(id: String?): Contact
-    fun getAllFavorites(): Flow<List<Favorite>>
-    fun getAllContacts(): Flow<List<Favorite>>
-    fun setContact(contact: Contact)
-    fun deleteContact(id: String)
-    fun toggleFavoriteStatus(id: String)
+    suspend fun getContact(id: Int): Contact
+    fun observeAllFavorites(): Flow<List<Favorite>>
+    fun observeAllContacts(): Flow<List<Contact>>
+    suspend fun setContact(contact: Contact)
+    suspend fun deleteContact(id: Int)
+    suspend fun setFavoriteStatus(id: Int)
+    suspend fun removeFavoriteStatus(id: Int)
+}
+
+@Singleton
+class ContactsRepositoryImpl @Inject constructor(
+    val db: ContactsDatabase
+) : ContactsRepository {
+
+    private val dao = db.contactsDao()
+
+    override suspend fun getContact(id: Int): Contact {
+        return dao.getContract(id).toContact()
+    }
+
+    override fun observeAllFavorites(): Flow<List<Favorite>> {
+        return dao.observeAllFavorite().map { list -> list.map { it.toFavorite() } }
+    }
+
+    override fun observeAllContacts(): Flow<List<Contact>> {
+        return dao.observeAllContacts().map { list -> list.map { it.toContact() } }
+    }
+
+    override suspend fun setContact(contact: Contact) {
+        dao.insert(contact.toEntity())
+    }
+
+    override suspend fun deleteContact(id: Int) {
+        dao.delete(id)
+    }
+
+    override suspend fun setFavoriteStatus(id: Int) {
+        dao.markAsFavorite(id)
+    }
+
+    override suspend fun removeFavoriteStatus(id: Int) {
+        dao.removeMarkAsFavorite(id)
+    }
 }

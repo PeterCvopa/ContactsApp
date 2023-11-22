@@ -3,7 +3,7 @@ package com.cvopa.peter.play.ui.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.cvopa.peter.play.db.ContactsRepository
 import com.cvopa.peter.play.model.Favorite
-import com.cvopa.peter.play.ui.base.BaseViewModel
+import com.cvopa.peter.play.ui.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ class FavoriteVM @Inject constructor(repository: ContactsRepository) : BaseViewM
 
     init {
         viewModelScope.launch {
-            repository.getAllFavorites().collect {
+            repository.observeAllFavorites().collect {
                 emitState(state.value.copy(favorites = it))
             }
         }

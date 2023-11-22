@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="first_name">Meno</string>
+    <string name="last_name">Priezvisko</string>
+    <string name="phone_number">Telefonne Cislo</string>
+    <string name="save">Ulozit</string>
+    <string name="delete">Vymazat</string>
+    <string name="contacts_title">Kontakty</string>
+    <string name="favorite_title">Oblubene</string>
+    <string name="detail_title">Detail</string>
+    <string name="search">Hladaj...</string>
+</resources>

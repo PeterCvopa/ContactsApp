@@ -16,6 +16,11 @@ class ContactsDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideContactsDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context, ContactsDatabase::class.java, "contacts-database").build()
+    fun provideContactsDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context,
+        ContactsDatabase::class.java,
+        "contacts-database"
+    )
+        .build()
 
 }

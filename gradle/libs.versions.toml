@@ -1,7 +1,7 @@
 [versions]
 
 compose = "1.5.4"
-hiltLifecycleViewModel = "1.0.0-alpha03"
+hiltExtensions = "1.1.0"
 hiltVersion = "2.48.1"
 daggerVersion = "2.48.1"
 timberVersion = "5.0.1"
@@ -9,7 +9,8 @@ lifecycleVersion = "2.6.2"
 fragmentVersion = "2.6.2"
 androidGradlePluginVersion = "8.1.1"
 kotlinVersion = "1.9.20"
-kspVersion = "1.9.0-1.0.12"
+kspVersion = "1.9.20-1.0.14"
+
 
 rxJavaVersion = "2.2.21"
 rxAndroidVersion = "2.1.1"
@@ -28,7 +29,8 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersio
 #hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
-hilt-lifecycle = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltLifecycleViewModel" }
+hilt-lifecycle = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltExtensions" }
+hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltExtensions" }
 
 # dagger
 dagger-base = { module = "com.google.dagger:dagger", version.ref = "daggerVersion" }
@@ -44,13 +46,6 @@ lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-com
 lifecycle-savestate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycleVersion" }
 lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycleVersion" }
 fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentVersion" }
-
-# rx
-rx-java = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxJavaVersion" }
-rx-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxAndroidVersion" }
-rx-kotlin = { module = "io.reactivex.rxjava2:rxkotlin", version.ref = "rxKotlinVersion" }
-rx-binding = { module = "com.jakewharton.rxbinding2:rxbinding-kotlin", version.ref = "rxBindingKotlinVersion" }
-rx-relay2 = { module = "com.jakewharton.rxrelay2:rxrelay", version.ref = "rxRelayVersion" }
 
 # core
 core = { module = "androidx.core:core-ktx", version.ref = "androidxCoreVersion" }

@@ -1,4 +1,4 @@
-package com.cvopa.peter.play.ui.base
+package com.cvopa.peter.play.ui.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,5 +21,4 @@ abstract class BaseViewModel<State : Any> : ViewModel() {
             _state.emit(state)
         }
     }
-
 }

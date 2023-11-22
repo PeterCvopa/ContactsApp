@@ -3,7 +3,6 @@ package com.cvopa.peter.play
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.cvopa.peter.play.ui.ContactsApp
@@ -13,8 +12,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val viewModel: MainViewModel by viewModels()
 
     @Inject
     lateinit var detailVMFactory: DetailVM.Factory
